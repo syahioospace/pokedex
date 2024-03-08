@@ -26,7 +26,7 @@ const initialValue: Login = {
   password: "12345"
 }
 
-const randomToken = 'fe6oEdd2CDEd3ezWjEQFuAqucklAk046M8VEHDoLeBm9FAg7AKEqtgcWdippJ2lf'
+const randomToken = process.env.NEXT_PUBLIC_RANDOM_TOKEN
 
 const SignInForm = () => {
   const [reset, setReset] = useState({})
@@ -51,7 +51,7 @@ const SignInForm = () => {
   }
 
   const handleWithoutLogin = () => {
-    storage.setToken(randomToken)
+    storage.setToken(randomToken ?? '')
     router.replace(routes.main)
   }
 
