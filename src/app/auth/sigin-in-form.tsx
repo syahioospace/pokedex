@@ -29,7 +29,7 @@ const initialValue: Login = {
 const randomToken = process.env.NEXT_PUBLIC_RANDOM_TOKEN
 
 const SignInForm = () => {
-  const [reset, setReset] = useState({})
+  const [reset, setReset] = useState<{}>({})
   const [wrongPassword, setWrongPassword] = useState<string>("");
   const [wrongEmail, setWrongEmail] = useState<string>("");
   const { mutate: mutateLogin, isLoading } = useLogin()
