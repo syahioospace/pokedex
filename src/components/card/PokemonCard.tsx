@@ -6,6 +6,8 @@ import { formatNumber } from '@/utils/formatNumber'
 import { useMemo } from 'react'
 import { getPokemonId } from '@/utils/getPokemonId'
 import { pokemonQuery } from "@/hooks";
+import cn from "@/utils/class-names";
+import { getPokemonColor } from "@/utils/getPokemonColor";
 
 export default function PokemonCard({ url }: { url: string }) {
   const pokemonId = getPokemonId(url);
@@ -13,7 +15,7 @@ export default function PokemonCard({ url }: { url: string }) {
   const imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemonId}.png`;
 
   const pokemonDetails = pokemonQuery.usePokemonDetail({ name: pokemonId });
-  const { data: pokemonDetail, isLoading, isFetching } = pokemonDetails
+  const { data: pokemonDetail, isFetching } = pokemonDetails;
 
   const numberFormat = useMemo(
     () => formatNumber(parseInt(pokemonId)),
@@ -25,7 +27,10 @@ export default function PokemonCard({ url }: { url: string }) {
       <div className="relative">
         {!isFetching ? (
           <div
-            className={`relative mx-auto aspect-[4/5.06] w-full overflow-hidden rounded-lg bg-pokemon-${pokemonDetail?.types[0].type.name} cursor-pointer hover:shadow-xl`}
+            className={cn(
+              "relative mx-auto aspect-[4/5.06] w-full overflow-hidden rounded-lg cursor-pointer hover:shadow-xl",
+              getPokemonColor(pokemonDetail?.types[0]?.type.name)
+            )}
           >
             <Image
               alt="pokemon image"
