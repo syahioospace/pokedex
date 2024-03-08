@@ -4,9 +4,12 @@ import PokemonCard from "@/components/card/PokemonCard"
 import { pokemonQuery } from "@/hooks"
 import { useCallback } from "react"
 import { shortDataPokemon } from "@/utils/sortPokemon"
+import Spinner from "@/components/ui/spinner";
 
 const PokemonList = () => {
   const pokemon = pokemonQuery.usePokemonData()
+
+  const { isLoading } = pokemon
 
   const sortPokemon = useCallback(
     () => shortDataPokemon(pokemon?.data?.results ?? []),
@@ -20,6 +23,11 @@ const PokemonList = () => {
           <PokemonCard key={pokemon.name} url={pokemon.url} />
         ))}
       </div>
+      {isLoading ? (
+        <div className="grid h-full min-h-[128px] flex-grow place-content-center items-center justify-center">
+          <Spinner size="xl" />
+        </div>
+      ) : null}
     </div>
   );
 }

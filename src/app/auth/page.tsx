@@ -17,8 +17,6 @@ export default function SignIn() {
               alt="Sign In Image"
               fill
               priority
-              //sizes="(max-width: 257px) 100vw"
-              //className="object-cover"
             />
           </div>
         }

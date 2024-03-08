@@ -8,6 +8,7 @@ import { getPokemonId } from '@/utils/getPokemonId'
 import { pokemonQuery } from "@/hooks";
 import cn from "@/utils/class-names";
 import { getPokemonColor } from "@/utils/getPokemonColor";
+import { stringFormat } from '@/utils/stringFormat'
 
 export default function PokemonCard({ url }: { url: string }) {
   const pokemonId = getPokemonId(url);
@@ -68,7 +69,7 @@ export default function PokemonCard({ url }: { url: string }) {
                   as="h6"
                   className="mb-1 truncate font-semibold transition colors hover:text-primary text-white"
                 >
-                  {type.type.name}
+                  {stringFormat(type.type.name)}
                 </Title>
               ))}
             </div>

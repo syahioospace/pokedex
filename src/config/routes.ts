@@ -3,5 +3,6 @@ export const routes = {
   pokemon: {
     pokemonList: "/pokemon-list",
     pokemonDetail: (id: string) => `/pokemon/${id}/detail`
-  }
+  },
+  signIn:"/auth"
 }
